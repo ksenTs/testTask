@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test Task</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/modules/html5.js"></script>
+    <![endif]-->
+    <script src="js/modules/jquery.js"></script>
+    <script src="js/modules/jquery.scrollTo-1.4.2-min.js"></script>
+    <script src="js/modules/jquery.localscroll-1.2.7-min.js"></script>
+    <script src="js/modules/jquery-3.3.1.min.js"></script>
+    <script src="js/getGoods.js"></script>
+    <script src="js/addNew.js"></script>
+</head>
+<body>
+<div class="navbar-wrapper">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+                <nav class="pull-right nav-collapse collapse">
+                    <ul id="menu-main" class="nav">
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="top">
+</div>
+<div id="headerwrap">
+    <header class="clearfix">
+        <h1><span>It's time to find something!</span>
+        </h1>
+
+        <a id="add" href="indexx.html" class="hr">Or add new one</a>
+
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <input type="text" id="search_req" name="search_req" placeholder="Search..." class="cform-text" size="40" title="search_req" onkeyup="function pressEnter(event){if(event.keyCode == 13) update()}">
+                    <input type="button" onclick="update()" value="Find" class="cform-submit"><br>
+                    <div id="radio_buttons">
+                        <input type="radio" name="filter" id="name_filter" value="name" checked>&nbsp;Find by name&nbsp;&nbsp;
+                        <input type="radio" name="filter" id="category_filter" value="category">&nbsp;Find by category&nbsp;&nbsp;
+                    </div>
+                    <div id="main"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div id="modal_form">
+    <span id="modal_close">X</span>
+
+    <input type="text" placeholder="Enter name" id="newName">
+    <input type="text" placeholder="Enter decription" id="newDescr">
+    <input type="text" placeholder="Enter category" id="newCateg">
+    <input type="button" value="Save" onclick="add()">
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('a#add').click( function(event){
+            event.preventDefault();
+            $('#overlay').fadeIn(400,
+                function(){
+                    $('#modal_form')
+                        .css('display', 'block')
+                        .animate({opacity: 1, top: '50%'}, 200);
+                });
+        });
+        $('#modal_close, #overlay').click( function(){
+            $('#modal_form')
+                .animate({opacity: 0, top: '45%'}, 200,
+                    function(){
+                        $(this).css('display', 'none');
+                        $('#overlay').fadeOut(400);
+                    }
+                );
+        });
+    });
+</script>
+
+<script src="js/modules/bootstrap.js"></script>
+<script src="js/modules/jquery.prettyPhoto.js"></script>
+<script src="js/modules/site.js"></script>
+
+<div id="overlay"></div>
+</body>
+</html>
